@@ -295,7 +295,8 @@ class PrestashopBackend(models.Model):
     def import_customers_since(self):
         for backend_record in self:
             since_date = backend_record.import_partners_since
-            self.env['prestashop.res.partner'].import_customers_since(
+            self.env['prestashop.res.partner'].with_delay(
+            ).import_customers_since(
                 backend_record=backend_record, since_date=since_date)
         return True
 
