@@ -15,9 +15,9 @@ import logging
 _logger = logging.getLogger(__name__)
 
 try:
-    from prestapyt3 import PrestaShopWebServiceDict, PrestaShopWebServiceError
+    from prestapyt import PrestaShopWebServiceDict, PrestaShopWebServiceError
 except:
-    _logger.debug('Cannot import from `prestapyt3`')
+    _logger.debug('Cannot import from `prestapyt`')
 
 
 def retryable_error(func):

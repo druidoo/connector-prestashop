@@ -347,7 +347,7 @@ class PrestashopBackend(models.Model):
             filters = {}
             if since_date:
                 filters = {
-                    'date': '1', 'filter[date_upd]': '>[%s]' % (since_date)
+                    'date': '1', 'filter[date_upd]': '>[%s]' % (since_date,)
                 }
             with backend_record.work_on('account.payment.mode') as work:
                 importer = work.component(usage='batch.importer')

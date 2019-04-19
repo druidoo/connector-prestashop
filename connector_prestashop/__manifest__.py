@@ -20,7 +20,7 @@
     "external_dependencies": {
         'python': [
             "html2text",
-            "prestapyt3",
+            "prestapyt",
             # tests dependencies
             "freezegun",
             "vcr",
