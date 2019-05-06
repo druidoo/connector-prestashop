@@ -1,5 +1,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
+from odoo import _
+from odoo.exceptions import MissingError
 from odoo.addons.component.core import Component
 
 
@@ -27,14 +29,14 @@ class PaymentModeBatchImporter(Component):
         method_xmlid = 'account.account_payment_method_manual_in'
         payment_method = self.env.ref(method_xmlid, raise_if_not_found=False)
         if not payment_method:
-            return
+            raise MissingError(_('No payment method to import Payment Mode.'))
         journals = self.env['account.journal'].search(
             [('type', '=', 'bank'),
              ('company_id', '=', self.backend_record.company_id.id),
              ],
         )
         if len(journals) != 1:
-            return
+            raise MissingError(_('No bank journal to import Payment Mode.'))
         mode = self.model.create({
             'name': record['payment'],
             'company_id': self.backend_record.company_id.id,
